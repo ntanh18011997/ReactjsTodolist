@@ -58,6 +58,7 @@
 // Do again
 import React from "react";
 import ChildComponent from "./Props";
+import Stateless from "./Stateless_StateFull-Component";
 
 
 class Form extends React.Component{
@@ -101,7 +102,7 @@ class Form extends React.Component{
                     <br></br>
                     <label htmlFor="lname">Last name:</label><br></br>
                     <input 
-                        type="text" 
+                        type="password" 
                         value={this.state.lastName}
                         onChange={(event) => {this.handleLastName(event)}}
                     />
@@ -112,7 +113,13 @@ class Form extends React.Component{
                         onClick={(event) => {this.handleSubmit(event)}}
                     />
                 </form> 
-                <ChildComponent
+                {/* <ChildComponent
+                    name = {this.state.firstName}
+                    age = {this.state.lastName}
+                    address = {this.state.address}
+                    arrJobs = {this.state.arrJob}
+                /> */}
+                <Stateless
                     name = {this.state.firstName}
                     age = {this.state.lastName}
                     address = {this.state.address}
