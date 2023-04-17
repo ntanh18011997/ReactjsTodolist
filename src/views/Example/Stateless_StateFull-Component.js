@@ -28,6 +28,9 @@ import React from "react";
 // }
 // export default Stateless
 
+
+
+// Viết theo function 
 const Stateless = (props) => {
     let {arrJobs } = props ;
         return (

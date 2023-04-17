@@ -59,71 +59,62 @@
 import React from "react";
 import ChildComponent from "./Props";
 import Stateless from "./Stateless_StateFull-Component";
-
+import Conditional from "./Conditional_Output.js";
+import AddComponent from "./Split_Components";
+import AddComponents from "./Function_as_props";
+import DeletingData from './DeletingData'
 
 class Form extends React.Component{
     state = {
-        firstName : '',
-        lastName : '',
         arrJob: [
-            {id : 'abcJob1', title : 'Deloper', salary : '500 $'},
-            {id : 'abcJob2', title : 'Testers', salary : '400 $'},
-            {id : 'abcJob3', title : 'Project managers', salary : '1000 $'},
+            {id : 'abcJob1', title : 'Deloper', salary : '500'},
+            {id : 'abcJob2', title : 'Testers', salary : '400'},
+            {id : 'abcJob3', title : 'Project managers', salary : '1000'},
         ]
     }
-
-
-
-    handleFirstName = (event) => {
+    addNewJob = (job)  => {
+        console.log('check job from parent:' , job)
+        let currentJobs = this.state.arrJob;
+        currentJobs.push(job)
         this.setState({
-            firstName : event.target.value,
-        })
-    }
-    handleLastName = (event) => {
-        this.setState({
-            lastName : event.target.value,
+            // arrJobs: [...this.state.arrJobs, job]
+            arrJob: currentJobs
         })
     }
 
-    handleSubmit = (event) => {
-        console.log(this.state)
+    deleteAjob = (job) => {
+        let currentJobs = this.state.arrJob
+        currentJobs = currentJobs.filter(item => item.id !== job.id)
+        this.setState({
+            arrJob: currentJobs
+        })
     }
     render() {
         console.log(this.state)
         return(
             <div id='root'>
-                <form >
-                    <label htmlFor="fname">First name:</label><br></br>
-                    <input 
-                        type="text" 
-                        value={this.state.firstName}
-                        onChange={(event) => {this.handleFirstName(event)}}
-                    />
-                    <br></br>
-                    <label htmlFor="lname">Last name:</label><br></br>
-                    <input 
-                        type="password" 
-                        value={this.state.lastName}
-                        onChange={(event) => {this.handleLastName(event)}}
-                    />
-                    <br></br>
-                    <input 
-                        type="button" 
-                        value="Submit"
-                        onClick={(event) => {this.handleSubmit(event)}}
-                    />
-                </form> 
+                {/* <AddComponents 
+                    addNewJob= {this.addNewJob}
+                /> */}
+                <DeletingData
+                    addNewJob= {this.addNewJob}
+                    
+                />
                 {/* <ChildComponent
                     name = {this.state.firstName}
                     age = {this.state.lastName}
                     address = {this.state.address}
                     arrJobs = {this.state.arrJob}
                 /> */}
-                <Stateless
+                {/* <Stateless
                     name = {this.state.firstName}
                     age = {this.state.lastName}
                     address = {this.state.address}
                     arrJobs = {this.state.arrJob}
+                /> */}
+                <Conditional
+                    arrJobs = {this.state.arrJob}
+                    deleteAjob= {this.deleteAjob}
                 />
                 
             </div>
