@@ -67,10 +67,10 @@ import DeletingData from './DeletingData'
 class Form extends React.Component{
     state = {
         arrJob: [
-            {id : 'abcJob1', title : 'Deloper', salary : '500'},
-            {id : 'abcJob2', title : 'Testers', salary : '400'},
-            {id : 'abcJob3', title : 'Project managers', salary : '1000'},
-        ]
+            {id : '1', title : 'Deloper', salary : '500'},
+            {id : '2', title : 'Testers', salary : '400'},
+            {id : '3', title : 'Project managers', salary : '1000'},
+        ]   
     }
     addNewJob = (job)  => {
         console.log('check job from parent:' , job)
@@ -85,12 +85,13 @@ class Form extends React.Component{
     deleteAjob = (job) => {
         let currentJobs = this.state.arrJob
         currentJobs = currentJobs.filter(item => item.id !== job.id)
+        console.log('>>>>>>>>>>>: ', currentJobs)
         this.setState({
             arrJob: currentJobs
         })
     }
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return(
             <div id='root'>
                 {/* <AddComponents 
